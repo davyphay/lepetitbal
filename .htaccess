@@ -1,0 +1,32 @@
+
+#AuthName "MAINTENANCE EN COURS"
+#AuthType Basic
+#AuthUserFile "/srv/data/web/vhosts/www.lepetitbal.com/htdocs/.htpasswd"
+#Require valid-user
+
+#RewriteEngine on
+#RewriteCond %{REQUEST_URI} !/maintenance.html$
+#RewriteCond %{REMOTE_HOST} !^79\.86\.49\.22
+#RewriteRule $ /maintenance.html [R=302,L]
+
+RewriteEngine on
+RewriteCond %{REQUEST_URI} /maintenance.html$
+RewriteRule $ /index.php [R=302,L]
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+RewriteCond %{REQUEST_SCHEME} =http
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+ErrorDocument 404 https://www.lepetitbal.com/404.html
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /404.html [L]
+
