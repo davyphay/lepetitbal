@@ -192,7 +192,7 @@ function genererBillets(extract,recherche){
 			if(i===0){
 				//Incrémentation du compteur jour jusqu'à ce que l'on trouve un evenement
 				date_evenement=new Date(extract[i].date_evenement);	
-				while(date.getTime()!==date_evenement.getTime()){
+				while(date.getTime()<=date_evenement.getTime() && compteur_jour<30){
 					date.setDate(date.getDate()+1);
 					compteur_jour++;
 				}
@@ -258,8 +258,7 @@ function genererBillets(extract,recherche){
 					
 					//Incrémentation du compteur jour jusqu'à ce que l'on trouve un evenement
 					date_evenement=new Date(extract[i].date_evenement);
-					
-					while(date.getTime()!==date_evenement.getTime()){
+					while(date.getTime()<=date_evenement.getTime() && compteur_jour<30){
 						date.setDate(date.getDate()+1);
 						compteur_jour++;
 					}
